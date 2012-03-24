@@ -1,25 +1,4 @@
-Markdownizer
-============
+Exos SPI
+========
 
-This is a cool markdown publisher in php.
-
-How To...
----------
-
-### ...use it ?
-
-Just put these two files (`markdown.php`,  et `index.php`) in a directory accessible through your web server.
-
-The file `markdown.php` comes from [http://michelf.com/projets/php-markdown](), __great thanks to him__ !
-
-Note that the enchanced version _"PHP Markdown Extra"_ is used here !
-
-### ...access it ?
-
-Just look add : __http://url.to.your.directory/?n=filename_without_extension__
-
-You can also add sub-directories !
-
-### ...customize it ?
-
-Just add a file `main.css` at the root of your site... and it'll work !
+Quelques exos en info pour les spistes
