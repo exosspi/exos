@@ -1,0 +1,142 @@
+@font-face {
+    font-family : 'UbuntuLight';
+    src: url("Ubuntu-L.ttf");
+}
+
+body {
+    width : 900px;
+    margin : auto;
+    color : #424242;
+    font-family : UbuntuLight, Arial, serif;
+}
+
+h1 { font-size : 30px; }
+h2 { font-size : 22px; }
+
+a {
+    text-decoration : none;
+    color : #751F22;
+}
+
+a:hover {
+    font-weight : bold;
+}
+
+em {
+    color :  #4B70B4;
+    font-style : normal;
+    font-weight : bold;
+}
+
+body > header {
+    margin-bottom : 50px;
+    text-align : center;
+}
+
+body > header > p > a:hover {
+    color : #751F22;
+}
+
+body > header > p {
+    font-size : 42px;
+    font-weight : bold;
+}
+
+body > header > p > a {
+    color : #424242;
+}
+
+#menu ul{
+    list-style-type: none;
+    text-align : center;
+    font-size:1.2em;
+}
+
+#menu li {
+ 	display : inline;
+    margin-right:5px;
+    margin-left:5px;
+}
+
+pre {
+    border-left : 5px solid #4B70B4;
+    padding : 20px;
+    font-weight : bold;
+    font-size : 1.2em;
+    background-color : #DEE3E0 ;
+    color :  #4B70B4;
+}
+
+code {
+    color :  #4B70B4;
+}
+
+/* article */
+
+article p{
+    text-indent:30px;
+    text-align:justify;
+    line-height:25px;
+}
+
+article ol {
+    list-style-type: upper-roman;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    font-weight: bold;
+    color:#c1c1c1;
+}
+
+footer p:hover {
+    color:#1c1c1c;
+}
+
+/* Images */
+img {
+    margin: auto;
+    max-width:900px;
+}
+
+.formule {
+    text-align:center;
+    display:block;
+}
+
+.legende {
+    font-style: italic;
+    font-size:0.95em;
+    text-align:center;
+    text-indent:0px;
+}
+
+/* Autres classes */
+.center { text-align: center; }
+.right { float:right}
+.left { float:left}
+.math { font-style: italic; font-weight:bold}
+
+/* OCOTOCAT ! */
+
+#poulpechat {
+    float:right;
+    margin:0;
+    margin-right:-50px;
+}
+
+#poulpechat a{
+}
+
+#poulpechat img {
+    height: 200px;
+    border:none;
+}
+
+#poulpechat_info {
+    float: left;
+    height: 300px;
+    border:none;
+}
