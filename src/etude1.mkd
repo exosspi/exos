@@ -17,12 +17,13 @@ Notez bien que certaines notions ne sont probablement pas au programme de la L1 
 
 
 ## Notions abordées :
- *Pointeurs;
- *allocation dynamique;
- *structure;
- *fichiers;
- *fonction;
- *algorithmique de base.
+
+* Pointeurs;
+* allocation dynamique;
+* structure;
+* fichiers;
+* fonction;
+* algorithmique de base.
 
 
 
