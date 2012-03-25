@@ -1,0 +1,88 @@
+# Un bonhomme en console
+
+Avant d'aller coder le prochain skyrim, on peut faire joujou avec un simple terminal et un bonhomme que l'on déplace au clavier.
+
+
+## Enoncé
+
+Le principe est relativement simple :
+
+> L'utilisateur déplace un bonhomme (représenté par un 'A') dans un monde avec son clavier (touches 'z', 'q', 's', 'd'). 
+> La touche 'h' affiche une aide et la touche '!' quitte le jeu.
+> 
+> Une case vide est représenté par un '.' et un mur est représenté par un 'X'.
+> 
+> Le bonhomme __n'est pas__ passe-muraille et donc, il ne __traverse pas__ les murs.
+
+### Notions Abordées
+
+- pointeurs
+- structures
+- gestions des entrées au clavier
+- affichage
+- flags 
+- tests
+
+### Indication
+
+Bien sûr, vous pouvez choisir que l'utilisateur dusse valider chaque mouvement avec `<Entree>` mais c'est très con.
+
+L'objectif (et la principale difficulté) est bien sûr de gérer les entrées au clavier directement.
+
+Pour cela, deux moyens :
+
+- vous êtes un barbare et vous cherchez une solution sur le web
+- vous utilisez la solution présentée après
+
+Le terminal est classiquement en mode _cooked_ en gros, l'émulateur de terminal renvoie au vrai terminal des lignes complètes (terminées par `<Entree>`).
+Pour éviter ça, ajoutez ces 2 `#include` :
+
+    #include <termios.h>
+    #include <unistd.h>
+
+et utilisez cette fonction pour récuperer un caratère sans valider :
+
+
+    char get_one_char(void) {
+        char car;
+        struct termios termModeRaw, termOriginal; // deux structs pour le term normal et raw
+        tcgetattr(STDIN_FILENO, &termOriginal); // on sauvegarde le term normal
+        termModeRaw = termOriginal;
+        cfmakeraw(&termModeRaw);
+        tcsetattr(STDIN_FILENO, TCSANOW, &termModeRaw);  // on passe le term en raw
+        car = getchar(); // on récupère un char
+        tcsetattr(STDIN_FILENO, TCSANOW, &termOriginal); // on le remet en normal
+        return car;
+    }
+
+Cette solution est honteusement pompée [ici](http://www.geek-moutarde.fr/2010/12/comment-saisir-un-caractere-dans-un-programme-c-sans-devoir-valider-avec-la-touche-entree/)
+
+## Solution
+
+V'la une solution possible mais pas la seule ;)
+
+[La solution] (http://matael.org/~matael/exos/exo2.zip)
+
+Enfin, un __Makefile__ peut être cool :
+
+
+    CC=gcc
+
+    all:
+        $(CC) -Wall -g -O0 -o game main.c
+
+    clean:
+        rm game
+
+Un simple :
+
+    $ make
+
+compilera votre `main.c` en un zoli exécutable `game` que vous pourrez lancer avec 
+
+    $ ./game
+
+et supprimer avec l'une de ces deux commandes :
+
+    $ rm game
+    $ make clean
