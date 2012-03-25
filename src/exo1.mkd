@@ -41,6 +41,13 @@ Sachez qu'un formatage est réalisé par cette fonction : __le code est sur 2 ca
 
 ---
 
+## Notions
+
+- boucles
+- printf et formatage de chaines
+- calcul hexa
+
+
 ## Solution 
 
 C'est __une__ solution possible : pas la seule, ni la meilleure.
