@@ -18,7 +18,7 @@ Pointeurs, allocation dynamique, structure, fichiers, fonction, algorithmique de
 
 ## Comment étudier ce programme :
 Déjà, commencez par l'essayer. Ensuite, lisez juste la fonction main, elle est assez explicite.
-Ensuite, lisez le header (main.h) en entier [size=85](il fait moins de 100 lignes, dont beaucoup de commentaires)[/size]. Il contient énormément d'informations qu'il sera parfois nécessaire de comprendre par la suite.
+Ensuite, lisez le header (main.h) en entier (il fait moins de 100 lignes, dont beaucoup de commentaires). Il contient énormément d'informations qu'il sera parfois nécessaire de comprendre par la suite.
 Ensuite, survolez le programme pour voir un peu de quoi il est question.
 Ensuite, vous avez le choix : 
 - soit vous aimez la prog', et vous étudiez le programme dans son ordre d'exécution. (comme on fait pour le debugage)
