@@ -59,9 +59,7 @@ Cette solution est honteusement pompée [ici](http://www.geek-moutarde.fr/2010/1
 
 ## Solution
 
-V'la une solution possible mais pas la seule ;)
-
-[La solution] (http://matael.org/~matael/exos/exo2.zip)
+V'la une solution possible mais pas la seule ;) : [exo2.zip](http://matael.org/~matael/exos/exo2.zip)
 
 Enfin, un __Makefile__ peut être cool :
 
