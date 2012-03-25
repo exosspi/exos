@@ -31,15 +31,15 @@ Notez bien que certaines notions ne sont probablement pas au programme de la L1 
 ## Comment étudier ce programme :
 Déjà, commencez par l'essayer. Ensuite, lisez juste la fonction main, elle est assez explicite.
 
-Ensuite, lisez le header (main.h) en entier (il fait moins de 100 lignes, dont beaucoup de commentaires). Il contient énormément d'informations qu'il sera parfois nécessaire de comprendre par la suite.
+* lisez le header (main.h) en entier (il fait moins de 100 lignes, dont beaucoup de commentaires). Il contient énormément d'informations qu'il sera parfois nécessaire de comprendre par la suite.
 
-Ensuite, survolez le programme pour voir un peu de quoi il est question.
+* survolez le programme pour voir un peu de quoi il est question.
 
-Ensuite, vous avez le choix : 
-- soit vous aimez la prog', et vous étudiez le programme dans son ordre d'exécution. (comme on fait pour le debugage)
-- soit vous ne voulez pas faire comme ça, (et c'est vrai que c'est chiant), et vous choisissez une fonction qui vous inspire confiance, et commencez par comprendre celle-là. Une fois comprise, il sera plus simple d'aborder les autres.
+* Ensuite, vous avez le choix : 
+ - soit vous aimez la prog', et vous étudiez le programme dans son ordre d'exécution. (comme on fait pour le debugage)
+ - soit vous ne voulez pas faire comme ça, (et c'est vrai que c'est chiant), et vous choisissez une fonction qui vous inspire confiance, et commencez par comprendre celle-là. Une fois comprise, il sera plus simple d'aborder les autres.
 
-En étudiant chaque fonction une par une, vous finirez par comprendre l'ensemble du programme.
+C'est en étudiant chaque fonction une par une que vous finirez par comprendre l'ensemble du programme.
 
 
 
