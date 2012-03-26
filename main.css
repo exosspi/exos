@@ -31,7 +31,6 @@ em {
 body > header {
     margin-bottom : 50px;
     text-align : center;
-    background : url("try_again.svg") top right no-repeat;
 }
 
 body > header > p > a:hover {
@@ -119,3 +118,8 @@ img {
 .right { float:right}
 .left { float:left}
 .math { font-style: italic; font-weight:bold}
+
+#try_again {
+    float: right;
+	width : 250px;
+}
