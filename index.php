@@ -50,7 +50,7 @@ END;
 	</article>
 	</div>
 	<div style="clear:both;">&nbsp;</div>
-	<footer><p>Powered by mkdizer</p></footer>
+	<footer><p>Powered by mkdizer | <a href="/?rss">RSS Feed</a></p></footer>
 </body>
 </html>
 END;
@@ -123,7 +123,7 @@ var disqus_shortname = 'exosspi'; // required: replace example with your forum s
 </article>
 </div>
 <div style="clear:both;">&nbsp;</div>
-<footer><p>Powered by mkdizer</p></footer>
+<footer><p>Powered by mkdizer | <a href="/?rss">RSS Feed</a></p></footer>
 </body>
 </html>
 END;
