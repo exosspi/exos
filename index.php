@@ -3,10 +3,10 @@
 require_once "./markdown.php";
 
 if (isset($_GET['n'])){
-	$file = './src/'.$_GET['n'].'.mkd';
 	$title = $_GET['n'];
+	$file = './src/'.$title.'.mkd';
 	$fh = fopen($file, 'r');
-
+	$title = preg_replace('#_#', ' ', $title);
 	echo<<<END
 <!doctype html>
 <html lang="fr">
@@ -17,8 +17,13 @@ if (isset($_GET['n'])){
     </head>
     <body>
 	<header>
-		<p>$title</p>
+		<p><a href="/">$title</a></p>
 	</header>
+        <div  id="menu">
+            <ul>
+	    <li><a href="/">Retour Accueil</a></li>
+            </ul>
+        </div>
 	<div id="main_content">
 	    <article>
 END;
@@ -26,6 +31,7 @@ END;
 
 	echo<<<END
 	</article>
+	<hr/>
 	<article class="disqus">
 		<div id="disqus_thread"></div>
 		<script type="text/javascript">
@@ -48,6 +54,27 @@ END;
 </body>
 </html>
 END;
+} elseif (isset($_GET['rss'])){
+	$dir = './src/*';
+	echo '<?xml version="1.0" encoding="utf-8"?>';
+	echo '<rss version="2.0">';
+	echo '<channel>';
+	echo '<title>Exos SPI</title>';
+	echo '<description>Flux RSS du site d\'exos étudiant de la SPI</description>';
+	echo "<lastBuildDate>".date('l jS F Y h:i:s A')."</lastBuildDate>";
+	echo "<link>http://exos.matael.org</link>";
+
+	foreach (glob($dir) as $file) {
+		$filename = preg_replace('/\.mkd$/', '', $file);
+		$filename = preg_replace('/^\.\/src\//', '', $filename);
+		echo "<item>";
+		echo "<title>".preg_replace('#_#', ' ',$filename)."</title>";
+		echo "<link>http://exos.matael.org/?n=".$filename."</link>";
+		echo "</item>";
+	}
+	echo "</channel>";
+	echo "</rss>";
+
 } else {
 	$title = 'Index';
 	$dir = './src/*';
@@ -61,7 +88,7 @@ END;
     </head>
     <body>
 	<header>
-		<p>$title</p>
+		<p><a href="/">$title</a></p>
 	</header>
 	<div id="main_content">
 	    <article>
@@ -71,13 +98,13 @@ END;
 	foreach (glob($dir) as $file) {
 		$filename = preg_replace('/\.mkd$/', '', $file);
 		$filename = preg_replace('/^\.\/src\//', '', $filename);
-		echo '<li><a href="/?n='.$filename.'">'.$filename.'</a></li>';
+		echo '<li><a href="/?n='.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a></li>';
 	}
 
-}
 echo<<<END
 	</ul>
 </article>
+<hr/>
 <article class="disqus">
 	<div id="disqus_thread"></div>
 	<script type="text/javascript">
@@ -100,4 +127,5 @@ var disqus_shortname = 'exosspi'; // required: replace example with your forum s
 </body>
 </html>
 END;
+}
 ?>
