@@ -31,6 +31,7 @@ em {
 body > header {
     margin-bottom : 50px;
     text-align : center;
+    background : url("try_again.svg") top right no-repeat;
 }
 
 body > header > p > a:hover {
@@ -118,25 +119,3 @@ img {
 .right { float:right}
 .left { float:left}
 .math { font-style: italic; font-weight:bold}
-
-/* OCOTOCAT ! */
-
-#poulpechat {
-    float:right;
-    margin:0;
-    margin-right:-50px;
-}
-
-#poulpechat a{
-}
-
-#poulpechat img {
-    height: 200px;
-    border:none;
-}
-
-#poulpechat_info {
-    float: left;
-    height: 300px;
-    border:none;
-}
