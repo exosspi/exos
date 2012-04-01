@@ -1,7 +1,6 @@
 Plusieurs autres exos trainent dans les cartons :
 
 * C
-    * fonction `char *type(void* var)` pour trouver le type d'une variable
     * stack machine
 * Bash
     * bot IRC
