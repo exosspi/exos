@@ -32,9 +32,9 @@ __Rappel__
 
 On peut afficher le code hexa d'un int en utilisant la fonction suivante :
 
-    void affiche_hexa(int truc_a_afficher){
-        printf(" %2x",truc_a_afficher);
-    }
+	void affiche_hexa(int truc_a_afficher){
+		printf(" %2x",truc_a_afficher);
+	}
 
 Vous pouvez copier/coller ça en début de fichier et utiliser la fonction pour afficher le code.
 Sachez qu'un formatage est réalisé par cette fonction : __le code est sur 2 caractères précédés d'un espace__.
