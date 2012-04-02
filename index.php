@@ -7,6 +7,7 @@ if (isset($_GET['n'])){
 	$file = './src/'.$title.'.mkd';
 	$fh = fopen($file, 'r');
 	$title = preg_replace('#_#', ' ', $title);
+	$title = preg_replace('/^.*\/(.*)/', "$1", $title);
 	echo<<<END
 <!doctype html>
 <html lang="fr">
@@ -93,16 +94,20 @@ END;
 	<div id="main_content">
 	    <article>
 	    <p>Liste des exos :</p>
-	    <ul>
 END;
-	foreach (glob($dir) as $file) {
-		$filename = preg_replace('/\.mkd$/', '', $file);
-		$filename = preg_replace('/^\.\/src\//', '', $filename);
-		echo '<li><a href="/?n='.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a></li>';
+	foreach (glob($dir) as $folder) {
+		$folder_name = preg_replace('/^\.\/src\//', '', $folder);
+		echo "<h3>".preg_replace('/^\.\/src\//', '', $folder_name)."</h3>";
+	    echo "<ul>";
+		foreach (glob($folder.'/*') as $file) {
+			$filename = preg_replace('/\.mkd$/', '', $file);
+			$filename = preg_replace('/^\.\/src\/'.$folder_name.'\//', '', $filename);
+			echo '<li><a href="/?n='.$folder_name.'/'.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a></li>';
+		}
+		echo "</ul>";
 	}
 
 echo<<<END
-	</ul>
 </article>
 <hr/>
 <article class="disqus">
