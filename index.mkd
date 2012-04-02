@@ -1,0 +1,28 @@
+# Ahoy !
+
+Bienvenue sur ce site où vous trouverez quelques exos pour vous exercer.
+
+Certains sont des codes à étudier qui montrent certaines possibilités des langages, d'autres des exos purs et durs, bref, un peu de tout.
+
+Vous pouvez bien sûr passer votre chemin, mais ne vous leurrez pas : __on apprend qu'en s'exerçant__.
+
+Certains exos sont simples, d'autres ont une apparence compliquée mais leur difficulté s'arrête là, d'autres enfin sont durs.
+Vous __ne parviendrez pas__ à tout faire d'un coup (d'ailleurs, nous non plus), mais petit à petit, ça viendra.
+
+Rappelez vous ces quelques règles de base :
+
+- un problème énorme peut se décomposer en problèmes plus simples (on admettra la récursivité de cette phrase)
+- un algo non testé est un algo __qui ne marche pas__
+- un algo testé sur un seul jeu de données est __pire__
+- `while(!success){ try(); }`
+- rien ne vaut __une feuille et un crayon__, sauf peut être un tableau blanc
+- _"Ils ne savaient pas que c'était impossible, alors ils l'ont fait"_ (Mark Twain)
+- __KISS__ : _"keep it simple and stupid"_ (ne cherchez pas à faire une vaste usine à gaz)
+- 42
+- le [forum](http://spi2011.fr) et les commentaires existent
+
+
+Oubliez celles-ci :
+
+- la réponse D
+- [un anti-dépresseur](http://nyan.cat) (attention, demande un temps d'adaptation)

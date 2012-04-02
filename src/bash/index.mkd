@@ -1,0 +1,3 @@
+Il s'agit là de travailler un peu autour de bash.
+Bien que souvent délaissé, ce langage permet de faire des choses puissantes et est un véritable atout.
+
