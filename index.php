@@ -29,6 +29,7 @@ if (isset($_GET['n'])){
 	    <article>
 END;
 	echo Markdown(fread($fh, filesize($file)));
+	fclose($fh);
 
 	echo<<<END
 	</article>
@@ -51,7 +52,7 @@ END;
 	</article>
 	</div>
 	<div style="clear:both;">&nbsp;</div>
-	<footer><p>Powered by mkdizer | <a href="/?rss">RSS Feed</a></p></footer>
+	<footer><p>Powered by mkdizer <!--| <a href="/?rss">RSS Feed</a>--></p></footer>
 </body>
 </html>
 END;
@@ -93,11 +94,17 @@ END;
 	</header>
 	<div id="main_content">
 	    <article>
-	    <p>Liste des exos :</p>
+		
 END;
+	$fh = fopen("index.mkd", 'r');
+	echo Markdown(fread($fh, filesize("index.mkd")));
+	fclose($fh);
 	foreach (glob($dir) as $folder) {
 		$folder_name = preg_replace('/^\.\/src\//', '', $folder);
 		echo "<h3>".preg_replace('/^\.\/src\//', '', $folder_name)."</h3>";
+		$fh = fopen($folder."/index.mkd", "r");
+		echo Markdown(fread($fh, filesize($folder."/index.mkd")));
+		fclose($fh);
 	    echo "<ul>";
 		foreach (glob($folder.'/*') as $file) {
 			$filename = preg_replace('/\.mkd$/', '', $file);
@@ -128,7 +135,7 @@ var disqus_shortname = 'exosspi'; // required: replace example with your forum s
 </article>
 </div>
 <div style="clear:both;">&nbsp;</div>
-<footer><p>Powered by mkdizer | <a href="/?rss">RSS Feed</a></p></footer>
+<footer><p>Powered by mkdizer <!--| <a href="/?rss">RSS Feed</a>--></p></footer>
 </body>
 </html>
 END;
