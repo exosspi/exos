@@ -1,7 +1,0 @@
-Plusieurs autres exos trainent dans les cartons :
-
-* C
-    * stack machine
-* Bash
-    * bot IRC
-    * one-line ROT13

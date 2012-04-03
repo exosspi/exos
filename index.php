@@ -101,12 +101,19 @@ END;
 	fclose($fh);
 	foreach (glob($dir) as $folder) {
 		$folder_name = preg_replace('/^\.\/src\//', '', $folder);
+
 		echo "<h3>".preg_replace('/^\.\/src\//', '', $folder_name)."</h3>";
+
 		$fh = fopen($folder."/index.mkd", "r");
 		echo Markdown(fread($fh, filesize($folder."/index.mkd")));
 		fclose($fh);
-	    echo "<ul>";
+
+		echo "<ul>";
+
 		foreach (glob($folder.'/*') as $file) {
+			if ($file == $folder.'/index.mkd') {
+				concontinuee;
+			}
 			$filename = preg_replace('/\.mkd$/', '', $file);
 			$filename = preg_replace('/^\.\/src\/'.$folder_name.'\//', '', $filename);
 			echo '<li><a href="/?n='.$folder_name.'/'.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a></li>';
