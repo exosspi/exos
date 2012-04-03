@@ -1,0 +1,126 @@
+# Générateur de cartes
+
+## Enoncé
+
+Dnas l'[exo2 bis](?n=C/exo2bis), j'ai mis à disposition un script python `compile_map.py` qui permettait de transformer une map dessinée en ASCII en une suite d'instruction pour l'initialisation de la carte du jeu (fichier `map.h`).
+
+L'exo est simple : recodez le en Ruby.
+
+Vous partez d'une map comme ceci : 
+
+    
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    X.................................X
+    X.XXXXXXXXXXXXXX.XXXXXXXXXXXXXXXX.X
+    X.X.............................X.X
+    X.X..XXXXXXXXXXXXXXXXXXXXXXXXXXXX.X
+    X.X.............................X.X
+    X.XXXXXXXXXXXXXXXXXXXXX.XXXXXXXXX.X
+    X.X...................X.X.......X.X
+    X.X.XX..X...X..X...X..X.X.XXXXX.X.X
+    X.X.XX..X..XXXXXX..X..X...XXXXX.X.X
+    X.X.XX..X...X..X...X..X.X.XXXXX.X.X
+    X.X.XX..X...X..X........X.......X.X
+    X.X.XX.........X....XXXXXXXXXXX.X.X
+    X.X.XXXXXXXXXXXXXXX.............X.X
+    X.X.XXXXXXXXXXXXXXX.XXXXXXXXXXX...X
+    X.X.XX...........X.....X.XX...XXX.X
+    X.X.XX.XXXX.XXXXX..X.X.....X....X.X
+    X.X.XX....X........X..XX.X......X.X
+    X.XXXX.XXXXXXXXXXXXXXXXXXXXXXXX.X.X
+    X.X.XX.......................!X.X.X
+    X.X.XXXXXXXXXXXXXXXXXXXXXXXXXXX.X.X
+    X.X.............................X.X
+    X.XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.X
+    X.................................X
+    XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+Et vous arrivez à une série de 
+
+    
+    set_wall(m,2,19); # placer un mur en (x, y)
+    set_wall(m,4,19);
+    set_wall(m,5,19);
+    set_secret(m,29,19); # placer le secret (! dans la map)
+    set_wall(m,30,19);
+    set_wall(m,32,19);
+    set_wall(m,34,19);
+    set_wall(m,0,20);
+
+## Solution
+
+Voilà la solution que j'ai biouillé (donne le __même__ résultat que celle en python) :
+
+    #!/usr/bin/env ruby
+    
+    # Map Generator
+    
+    def generate (filename)
+        # Ouverture du fichier
+        src = File.open(filename, 'r')
+    
+        y = 0
+        src.each_line { |line|
+            x = 0
+            line.each_char{ |car|
+                puts "set_wall(m,#{x},#{y});" if car == 'X'
+                puts "set_secret(m,#{x},#{y});" if car == '!'
+                x += 1
+            }
+            y += 1
+        }
+    
+        src.close
+    end
+    
+    
+    if ARGV.length != 1:
+        puts "Vous devez préciser un et un seul nom de fichier"
+        Kernel.exit(0)
+    end
+    
+    generate(ARGV[0])
+
+Pour info, voilà le script python équivalent :
+
+
+    #!/usr/bin/env python
+    #-*-coding:utf8-*-
+    
+    # Map Generator
+    
+    import sys
+    import os
+    
+    def generate(src_file):
+        src = open(src_file)    
+        y = 0
+        x = 0
+        l = src.readline()
+        while l:
+            l = [_ for _ in l]
+            x = 0;
+            for i in l:
+                if i=='X':
+                    sys.stdout.write('set_wall(m,')
+                    sys.stdout.write(str(x))
+                    sys.stdout.write(',')
+                    sys.stdout.write(str(y))
+                    sys.stdout.write(');\n')
+                if i=='!':
+                    sys.stdout.write('set_secret(m,')
+                    sys.stdout.write(str(x))
+                    sys.stdout.write(',')
+                    sys.stdout.write(str(y))
+                    sys.stdout.write(');\n')
+                x += 1
+            y += 1
+            l = src.readline()
+    
+    def main():
+        if sys.argc != 2:
+            print("Vous devez spécifier un et un seul fichier")
+            sys.exit(0)
+        generate(sys.argv[1])
+    
+    if __name__=='__main__': main()
