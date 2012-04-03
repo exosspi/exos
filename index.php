@@ -112,7 +112,7 @@ END;
 
 		foreach (glob($folder.'/*') as $file) {
 			if ($file == $folder.'/index.mkd') {
-				concontinuee;
+				continue;
 			}
 			$filename = preg_replace('/\.mkd$/', '', $file);
 			$filename = preg_replace('/^\.\/src\/'.$folder_name.'\//', '', $filename);

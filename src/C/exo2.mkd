@@ -85,4 +85,4 @@ et supprimer avec l'une de ces deux commandes :
     $ rm game
     $ make clean
 
-__Il y a une suite à cet exo : [un mini-jeu en console](/?n=exo2bis)__
+__Il y a une suite à cet exo : [un mini-jeu en console](/?n=C/exo2bis)__
