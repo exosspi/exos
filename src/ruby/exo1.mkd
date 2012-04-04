@@ -49,7 +49,7 @@ Et vous arrivez à une série de
 
 ## Solution
 
-Voilà la solution que j'ai biouillé (donne le __même__ résultat que celle en python) :
+Voilà la solution que j'ai bidouillé (donne le __même__ résultat que celle en python) :
 
     #!/usr/bin/env ruby
     
