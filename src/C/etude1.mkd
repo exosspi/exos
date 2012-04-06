@@ -51,7 +51,7 @@ Bien sûr, il ne s'agit pas de savoir comment recracher un programme semblable s
 
 
 ## Téléchargement :
-Vous trouverez le [tar.gz](http://matael.org/~lucas/CreationClasseC.tar.gz) contenant les sources. (deux fichiers, en fait)
+Vous trouverez le [tar.gz](http://matael.org/~lucas/exosMataelOrg/CreationClasseC.tar.gz) contenant les sources. (deux fichiers, en fait)
 Rien d'autre, car c'est pas spécialement utile.
 
 
