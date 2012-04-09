@@ -99,6 +99,8 @@ END;
 	$fh = fopen("index.mkd", 'r');
 	echo Markdown(fread($fh, filesize("index.mkd")));
 	fclose($fh);
+	$redis = new Redis();
+	$redis->connect('127.0.0.1');
 	foreach (glob($dir) as $folder) {
 		$folder_name = preg_replace('/^\.\/src\//', '', $folder);
 
@@ -116,10 +118,12 @@ END;
 			}
 			$filename = preg_replace('/\.mkd$/', '', $file);
 			$filename = preg_replace('/^\.\/src\/'.$folder_name.'\//', '', $filename);
-			echo '<li><a href="/?n='.$folder_name.'/'.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a></li>';
+			$first_line = $redis->get("exosfac:".$folder_name."/".$filename.".mkd");
+			echo '<li><a href="/?n='.$folder_name.'/'.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a>'.$first_line.'</li>';
 		}
 		echo "</ul>";
 	}
+	$redis->close();
 
 echo<<<END
 </article>
