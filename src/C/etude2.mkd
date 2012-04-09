@@ -1,3 +1,5 @@
+# Une GUI pour P.E.R.T.
+
 Bienvenue ! Vous voilà en proie avec le second sujet d'étude du site.
 Toujours en C, nous nous attaqueront cette fois au dernier TP d'algorithmique proposé au SPI de l'université du Maine : le tri par la méthode P.E.R.T.
 
