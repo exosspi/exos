@@ -1,4 +1,4 @@
-# Exo2 bis : un mini-jeu en console
+# Un mini-jeu en console
 
 ---
 __Avant d'attaquer...__

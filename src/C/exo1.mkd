@@ -1,4 +1,4 @@
-# Exo 1 : Une table d'addition en hexadécimal
+# Une table d'addition en hexadécimal
 
 
 ## Enoncé
