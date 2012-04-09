@@ -107,10 +107,12 @@ END;
 		echo "<h3>".preg_replace('/^\.\/src\//', '', $folder_name)."</h3>";
 
 		$fh = fopen($folder."/index.mkd", "r");
-		echo Markdown(fread($fh, filesize($folder."/index.mkd")));
+		if ($fh) {
+			echo '<div class="archive_separator">&nbsp;</div>';
+			echo '<div class="intro_category">'.Markdown(fread($fh, filesize($folder."/index.mkd"))).'</div>';
+		}
 		fclose($fh);
-
-		echo "<ul>";
+		echo '<div class="archive_separator">&nbsp;</div>';
 
 		foreach (glob($folder.'/*') as $file) {
 			if ($file == $folder.'/index.mkd') {
@@ -119,9 +121,10 @@ END;
 			$filename = preg_replace('/\.mkd$/', '', $file);
 			$filename = preg_replace('/^\.\/src\/'.$folder_name.'\//', '', $filename);
 			$first_line = $redis->get("exosfac:".$folder_name."/".$filename.".mkd");
-			echo '<li><a href="/?n='.$folder_name.'/'.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a>'.$first_line.'</li>';
+			echo '<div><div class="archive_link"><a href="/?n='.$folder_name.'/'.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a></div>';
+			echo '<div class="archive_summary">'.$first_line.'</div>';
+			echo '<div class="archive_separator">&nbsp;</div></div>';
 		}
-		echo "</ul>";
 	}
 	$redis->close();
 
