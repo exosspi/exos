@@ -1,6 +1,0 @@
-Plusieurs autres exos trainent dans les cartons :
-
-* C
-    * stack machine
-	* dc
-	* NPI
