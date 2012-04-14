@@ -26,6 +26,7 @@ Si vous ne trouvez pas, c'est pas grave, mais cherchez tout de même.
 > Oublions d'emblée la première : on ne fait que déplacer le problème et puis, une DB SQL, c'est un peu lourd, et pas toujours nécessaire.
 > 
 > Le fichier sérialisé a du bon, mais je le trouvais un peu trop facile, nous allons donc nous pencher sur Redis.
+
 ---
 
 Pour la présentation de Redis, je vous renvoie au [site du projet](http://redis.io) ou au dernier GLMF (GNU/Linux Magazine France n°148).
