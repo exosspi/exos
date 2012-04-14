@@ -144,6 +144,6 @@ En réalité, ce script est automatiquement appellé à chaque mise à jour et u
 
 Tout le processus est décrit dans cette série d'articles :
 
-1. [Plantons le décor](http://matael.org/2012/04/09/git-php-et-redis-13) : présentation du système présent et de l'amélioration proposée
-2. [Redis et git](http://matael.org/2012/04/09/git-php-et-redis-23) : présentation de [redis][] et de son installation, écriture du _hook_ pour git
-3. [Redis et PHP](http://matael.org/2012/04/09/git-php-et-redis-33) : compilation et installation du module apache pour redis et écriture du lien PHP
+1. [Plantons le décor](http://blog.matael.org/2012/04/09/git-php-et-redis-13) : présentation du système présent et de l'amélioration proposée
+2. [Redis et git](http://blog.matael.org/2012/04/09/git-php-et-redis-23) : présentation de [redis][] et de son installation, écriture du _hook_ pour git
+3. [Redis et PHP](http://blog.matael.org/2012/04/09/git-php-et-redis-33) : compilation et installation du module apache pour redis et écriture du lien PHP
