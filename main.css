@@ -12,7 +12,12 @@ body {
 
 h1 { font-size : 30px; }
 h2 { font-size : 22px; }
-article > h3 { border-bottom: 2px #c1c1c1 dotted; }
+article > h3 { 
+	margin-top: 40px;
+	margin-bottom: 0px;
+	text-align: center; 
+	font-size: 2em;
+}
 
 a {
     text-decoration : none;
@@ -123,4 +128,32 @@ img {
 #try_again {
     float: right;
 	width : 250px;
+}
+
+.archive_summary {
+	text-align: left;
+	color: #a1a1a1;
+	width: 425px;
+	margin-left: 475px;
+}
+
+.intro_category {
+	text-align: center;
+	margin: auto;
+	color: #a1a1a1;
+	width: 600px;
+}
+
+.archive_link {
+	width: 400px;
+	float: left;
+	text-align : right;
+}
+
+.archive_separator {
+	clear: both;
+	width: 600px;
+	margin: auto;
+	margin-bottom : 15px;
+	border-bottom: 1px #c1c1c1 solid;
 }
