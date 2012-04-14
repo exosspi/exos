@@ -10,13 +10,19 @@ body {
     font-family : UbuntuLight, Arial, serif;
 }
 
+
+h1, h2, h3 {
+	border-bottom: #C1C1C1 dotted 2px;
+}
+
 h1 { font-size : 30px; }
 h2 { font-size : 22px; }
-article > h3 { 
+.index_title { 
 	margin-top: 40px;
 	margin-bottom: 0px;
 	text-align: center; 
 	font-size: 2em;
+	border-bottom: none;
 }
 
 a {
@@ -86,7 +92,7 @@ article p{
 }
 
 article ol {
-    list-style-type: upper-roman;
+    list-style-type: lower-alpha;
 }
 
 /* Footer */

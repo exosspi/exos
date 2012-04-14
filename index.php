@@ -104,7 +104,7 @@ END;
 	foreach (glob($dir) as $folder) {
 		$folder_name = preg_replace('/^\.\/src\//', '', $folder);
 
-		echo "<h3>".preg_replace('/^\.\/src\//', '', $folder_name)."</h3>";
+		echo "<h3 class='index_title'>".preg_replace('/^\.\/src\//', '', $folder_name)."</h3>";
 
 		$fh = fopen($folder."/index.mkd", "r");
 		if ($fh) {
