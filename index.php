@@ -99,27 +99,34 @@ END;
 	$fh = fopen("index.mkd", 'r');
 	echo Markdown(fread($fh, filesize("index.mkd")));
 	fclose($fh);
+	$redis = new Redis();
+	$redis->connect('127.0.0.1');
 	foreach (glob($dir) as $folder) {
 		$folder_name = preg_replace('/^\.\/src\//', '', $folder);
 
-		echo "<h3>".preg_replace('/^\.\/src\//', '', $folder_name)."</h3>";
+		echo "<h3 class='index_title'>".preg_replace('/^\.\/src\//', '', $folder_name)."</h3>";
 
 		$fh = fopen($folder."/index.mkd", "r");
-		echo Markdown(fread($fh, filesize($folder."/index.mkd")));
+		if ($fh) {
+			echo '<div class="archive_separator">&nbsp;</div>';
+			echo '<div class="intro_category">'.Markdown(fread($fh, filesize($folder."/index.mkd"))).'</div>';
+		}
 		fclose($fh);
-
-		echo "<ul>";
+		echo '<div class="archive_separator">&nbsp;</div>';
 
 		foreach (glob($folder.'/*') as $file) {
 			if ($file == $folder.'/index.mkd') {
-				concontinuee;
+				continue;
 			}
 			$filename = preg_replace('/\.mkd$/', '', $file);
 			$filename = preg_replace('/^\.\/src\/'.$folder_name.'\//', '', $filename);
-			echo '<li><a href="/?n='.$folder_name.'/'.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a></li>';
+			$first_line = $redis->get("exosfac:".$folder_name."/".$filename.".mkd");
+			echo '<div><div class="archive_link"><a href="/?n='.$folder_name.'/'.$filename.'">'.preg_replace('#_#', ' ',$filename).'</a></div>';
+			echo '<div class="archive_summary">'.$first_line.'</div>';
+			echo '<div class="archive_separator">&nbsp;</div></div>';
 		}
-		echo "</ul>";
 	}
+	$redis->close();
 
 echo<<<END
 </article>

@@ -1,0 +1,149 @@
+# Le fonctionnement de la page d'accueil
+
+Lors de la création de ce site, j'avais mis une liste toute moche pour les exos présents.
+
+J'ai depuis essayé de faire un truc joli pour que ça donne envie.
+
+Vous remarquerez que les listes d'exos comportent le nom du fichier assorti de sa première ligne, si celle ci est un titre markdown (commence par un `#`).
+
+Aller lire la première ligne à chaque fois que l'on appelle la page d'accueil, c'est un peu lourd et pas frnchement optimisé.
+Cherchons un moyen de réduire les accès disques...
+
+## Exo 1 : Trouvez un moyen de réduire les accès disque au chargement de la page
+
+Si vous ne trouvez pas, c'est pas grave, mais cherchez tout de même.
+
+
+---
+> __Solution__
+> 
+> Plusieurs moyens existent :
+> 
+> - une base de données classique SQL
+> - un fichier sérialisé (json, yaml) contenant les bonnes infos
+> - une base de données NoSQL clés-valeurs (redis par exemple)
+> 
+> Oublions d'emblée la première : on ne fait que déplacer le problème et puis, une DB SQL, c'est un peu lourd, et pas toujours nécessaire.
+> 
+> Le fichier sérialisé a du bon, mais je le trouvais un peu trop facile, nous allons donc nous pencher sur Redis.
+
+---
+
+Pour la présentation de Redis, je vous renvoie au [site du projet](http://redis.io) ou au dernier GLMF (GNU/Linux Magazine France n°148).
+
+Maintenant qu'on a tout pour le stockage, nous allons écrire le script qui remplit la base.
+
+Celui ci doit :
+
+- lire la première ligne de chaque fichier si elle commence par `#` et supprimer ce symbole
+- dire sur quel fichier il travaille
+- entrer les infos dans la base. Vous utiliserez la commande suivante pour simuler l'ajout en base :
+       
+       echo "redis-cli SET $file_uniq_name '$line'"
+
+  `$file_uniq_name` contiendra tour à tour les noms __uniques__ de fichier (càd avec le nom du répertoire)
+
+  `$line` contiendra la première ligne du fichier courant
+
+Bien sûr, il vous faudra boucler sur des fichiers, voici donc l'arborescence de `src/` et l'emplacement du script :
+
+    .
+    ├── script.sh
+    └── src
+        ├── bash
+        │   ├── first_line.mkd
+        │   ├── index.mkd
+        │   └── logins.mkd
+        ├── C
+        │   ├── etude1.mkd
+        │   ├── etude2.mkd
+        │   ├── exo1.mkd
+        │   ├── exo2bis.mkd
+        │   └── exo2.mkd
+        └── ruby
+            └── exo1.mkd
+
+`src/` ne contiendra toujours __que__ des dossiers qui, eux, contiennent les fichiers qui nous intéressent.
+
+Pour la structure de la boucle, regardez [ce Wikibook](http://fr.wikibooks.org/wiki/Programmation_Bash).
+
+__Note :__ Si par hasard on rajoutait des dossiers dans `src/`, le script devrait s'adapter tout seul. 
+
+
+### Solution
+
+On cherche à parcourir une arborescence du type:
+
+    ./ -> dossiers -> fichiers
+
+Il nous faut donc 2 boucles :
+
+- une première pour itérer sur les dossiers
+- une seconde pour itérer sur les fichiers de ces dossiers
+
+Voilà le premier squelette :
+
+    #!/bin/bash
+
+    for folder in `ls src`
+    do
+        for file in `ls src/$folder`
+        do
+            # ... instructions ...
+        done
+    done
+
+
+Ensuite, il nous faut déduire le nom uniue du fichier courant (`$file_uniq_name`) et l'afficher (en le précédant d'un petit message) :
+
+    #!/bin/bash
+
+    for folder in `ls src`
+    do
+        for file in `ls src/$folder`
+        do
+            file_uniq_name="$folder/$file"
+            echo "+-> Adding line for key : $file_uniq_name"
+            
+            # ... Dernières Instructions ...
+    
+        done
+    done
+
+Reste à trouver la premiere ligne du fichier et l'ajouter à la base si elle débute par `#` après l'avoir nettoyée de ce symbole.
+
+    #!/bin/bash
+    
+    for folder in `ls src`
+    do
+        for file in `ls src/$folder`
+        do
+            file_uniq_name="$folder/$file"
+            echo "+-> Adding line for key : $file_uniq_name"
+            line=`head -n 1 src/$folder/$file | grep ^# | cut -d '#' -f 2`
+            echo "redis-cli SET $file_uniq_name '$line'"
+        done
+    done
+
+Expliquons un peu cette ligne :
+
+    line=`head -n 1 src/$folder/$file | grep ^# | cut -d '#' -f 2`
+    echo "redis-cli SET $file_uniq_name '$line'"
+
+1. On crée la variable `line` et on y ajoute le contenu de la commande à droite
+    1. `head -n 1....` lit la première ligne du fichier
+    2. `| grep ^#` ne la garde que si elle commence par `#`
+    3. `cut -d '#' -f 2` coupe la ligne à chaque `#` et ne garde que le second champ
+2. On ajoute la ligne et la clé à la DB
+
+## Conclusion
+
+Il s'agit ici d'un système réel et utilisé pour ce site même.
+
+En réalité, ce script est automatiquement appellé à chaque mise à jour et un script PHP récupère les infos pour l'affichage.
+
+Tout le processus est décrit dans cette série d'articles :
+
+1. [Plantons le décor](http://blog.matael.org/2012/04/09/git-php-et-redis-13) : présentation du système présent et de l'amélioration proposée
+2. [Redis et git](http://blog.matael.org/2012/04/09/git-php-et-redis-23) : présentation de [redis][] et de son installation, écriture du _hook_ pour git
+3. [Redis et PHP](http://blog.matael.org/2012/04/09/git-php-et-redis-33) : compilation et installation du module apache pour redis et écriture du lien PHP

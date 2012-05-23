@@ -49,7 +49,7 @@ Et vous arrivez à une série de
 
 ## Solution
 
-Voilà la solution que j'ai biouillé (donne le __même__ résultat que celle en python) :
+Voilà la solution que j'ai bidouillé (donne le __même__ résultat que celle en python) :
 
     #!/usr/bin/env ruby
     
@@ -124,3 +124,22 @@ Pour info, voilà le script python équivalent :
         generate(sys.argv[1])
     
     if __name__=='__main__': main()
+
+__Note :__ dans le code python, les groupes de lignes `sys.stdout.write(...)` aurait pu être condensé en une seule ligne en utilisant `print()`.
+
+On aurait alors eu quelque chose du genre :
+
+	print("set_wall(m,{0},{1});".format(x,y))
+	print("set_secret(m,{0},{1});".format(x,y))
+
+Les deux `import` auraient pu être groupés en 1 (et `os` ne sert pas vraiment....):
+
+	import sys, os
+
+et la ligne
+
+    #-*-coding:utf8-*-
+
+N'est pas du code et n'est pas obligatoire;
+
+Mais ça n'a pas vraiment d'importance (si ce n'est que les 2 programmes font alors la même taille : 28 lignes, non-optimisées).

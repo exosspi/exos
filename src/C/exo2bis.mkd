@@ -1,9 +1,9 @@
-# Exo2 bis : un mini-jeu en console
+# Un mini-jeu en console
 
 ---
 __Avant d'attaquer...__
 
-...faîtes l'[exo 2](/?n=exo2) __;)__
+...faîtes l'[exo 2](/?n=C/exo2) __;)__
 
 ---
 
@@ -17,6 +17,16 @@ Maintenant, on va améliorer un peu le tout : débrouillez vous pour réaliser u
 
 L'utilisateur déplace le bonhomme comme avant mais à travers un labyrinthe et doit atteindre un _"secret"_ (représenté par un __!__ par exemple).
 Quand il l'atteint, affichez un message de victoire et arrêtez le programme.
+
+### Pourquoi ne pas donner plus d'indices
+
+Parce que je pense que vous êtes largement assez futés pour y arriver tout seuls ;)
+
+Comme d'habitude, si le code en lui même vous pose problème, lâchez le clavier et prenez un papier.
+
+Une fois bien préparé, le code ne comporte __aucune__ difficulté ni d'un point de vue algorithmique ni vis à vis de l'implémentation.
+
+
 
 ## Solution
 
@@ -41,6 +51,12 @@ Lancé via :
 
     $ script.sh > map.h
 
-Pas sûr que ça vous soit très utile, mais essayez de faire un utilitaire du genre : c'est un bon entrainement.
+Pas sûr que ça vous soit très utile, mais __essayez de faire un utilitaire du genre : c'est un bon entrainement__.
 
 __Il n'y a pour ainsi dire pas de commentaires : peu de fonctions ont changé depuis l'exo 2 et cette solution est donnée pour que vous puissiez la tester et vous rendre compte du résultat attendu ;)__
+
+Là encore, je peux justifier ce choix : __TIMTOWTDI__ (c'est un mot répandu dans la communauté perl en particulier)
+
+<p class="center"><strong>There Is More Than One Way To Do It</strong></p>
+
+Ma solution n'est pas la meilleure et pourrait être améliorée : meilleure gestion de la mémoire, utilisation d'une bibliothèque pour gèrer l'affichage (genre _ncurses_), etc...
