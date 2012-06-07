@@ -1,27 +1,31 @@
 # Un bonhomme en console
 
-Avant d'aller coder le prochain skyrim, on peut faire joujou avec un simple terminal et un bonhomme que l'on déplace au clavier.
+## Notions Abordées
+
+- pointeurs
+- structures
+- interface : gestions des entrées au clavier
+- GUI (affichage console)
+- fonctions : flags 
+- structures conditionnelles
+- algorithmique
 
 
 ## Enoncé
+
+### Présentation
+
+Avant d'aller coder le prochain skyrim, on peut faire joujou avec un simple terminal et un bonhomme que l'on déplace au clavier.
 
 Le principe est relativement simple :
 
 > L'utilisateur déplace un bonhomme (représenté par un 'A') dans un monde avec son clavier (touches 'z', 'q', 's', 'd'). 
 > La touche 'h' affiche une aide et la touche '!' quitte le jeu.
 > 
-> Une case vide est représenté par un '.' et un mur est représenté par un 'X'.
+> Une case vide est représentée par un '.' et un mur est représenté par un 'X'.
 > 
 > Le bonhomme __n'est pas__ passe-muraille et donc, il ne __traverse pas__ les murs.
 
-### Notions Abordées
-
-- pointeurs
-- structures
-- gestions des entrées au clavier
-- affichage
-- flags 
-- tests
 
 ### Indication
 
@@ -32,7 +36,7 @@ L'objectif (et la principale difficulté) est bien sûr de gérer les entrées a
 Pour cela, deux moyens :
 
 - vous êtes un barbare et vous cherchez une solution sur le web
-- vous utilisez la solution présentée après
+- vous êtes une fiotte et préférez utiliser la solution présentée après
 
 Le terminal est classiquement en mode _cooked_ en gros, l'émulateur de terminal renvoie au vrai terminal des lignes complètes (terminées par `<Entree>`).
 Pour éviter ça, ajoutez ces 2 `#include` :
