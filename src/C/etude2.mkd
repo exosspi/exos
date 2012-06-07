@@ -1,21 +1,5 @@
 # Une GUI pour P.E.R.T.
 
-Bienvenue ! Vous voilà en proie avec le second sujet d'étude du site.
-Toujours en C, nous nous attaqueront cette fois au dernier TP d'algorithmique proposé au SPI de l'université du Maine : le tri par la méthode P.E.R.T.
-
-J'ai remarqué que beaucoup n'avais pas persévéré à faire ce programme qui peut sembler de prime abord très complexe.
-Comme il s'agit d'une étude, (je vous renvoie à [la première étude](exos.matael.org/?n=C/etude1) pour comprendre de quoi il s'agit), un code source terminal est fourni. (il s'agit en fait de ma réponse au TP)
-
-
-Il est évident que, si vous n'avez pas tenté de faire ce TP, il est contre productif de consulter ces sources.
-Si en revanche vous avez travaillé dessus un temps raisonnable (deux heures productives me semble être un bon quota), la lecture de ce code source pourrait vous permettre de mieux appréhender le programme, et donc de vous améliorer.
-
-
-## Présentation
-Vous trouverez deux fichiers dans l'archive donnée en téléchargement. Beaucoup de notions ne sont pas annotées, principalement parce qu'elles ont déjà été abordées lors de la [première étude](exos.matael.org/?n=C/etude1).
-Les commentaires (toujours aussi nombreux), se tourne essentiellement vers la compréhension de l'algorithme.
-Le programme possède en outre davantage de fonctions que la première étude. Un avantage pour vous : le problème est décomposé en unn plus grand nombre de fonctions simples. Les comprendre une à une, dans l'ordre qui vous inspire/rassure, vous permettra peu à peu de comprendre l'ensemble du programme.
-
 ## Notions abordées
 * Algorithmique de base
 * Pointeurs
@@ -23,8 +7,31 @@ Le programme possède en outre davantage de fonctions que la première étude. U
 * Structure (liste de)
 * Fonctions
 
+## Enoncé
 
-## Téléchargement :
+Bienvenue ! Vous voilà en proie avec le second sujet d'étude du site.
+Toujours en C, nous nous attaqueront cette fois au dernier TP d'algorithmique proposé aux SPI de l'université du Maine : le tri par la méthode P.E.R.T.
+
+J'ai remarqué que beaucoup n'avaient pas persévéré à faire ce programme qui peut sembler de prime abord très complexe.
+Comme il s'agit d'une étude, (je vous renvoie à [la première étude](/?n=C/etude1) pour comprendre de quoi il s'agit), un code source terminal est fourni. (il s'agit en fait de ma réponse au TP)
+
+
+Il est évident que, si vous n'avez pas tenté de faire ce TP, il est contre productif de consulter ces sources.
+Si en revanche vous avez travaillé dessus un temps raisonnable (deux heures productives me semble être un bon quota), la lecture de ce code source pourrait vous permettre de mieux appréhender le programme, et donc de vous améliorer.
+
+
+### Présentation
+
+Vous trouverez deux fichiers dans l'archive donnée en téléchargement.
+Beaucoup de notions ne sont pas annotées, principalement parce qu'elles ont déjà été abordées lors de la [première étude](/?n=C/etude1).
+
+Les commentaires (toujours aussi nombreux), se tournent essentiellement vers la compréhension de l'algorithme.
+Le programme possède en outre davantage de fonctions que la première étude.
+Un avantage pour vous : le problème est décomposé en unn plus grand nombre de fonctions simples.
+Les comprendre une à une, dans l'ordre qui vous inspire/rassure, vous permettra peu à peu de comprendre l'ensemble du programme.
+
+## Téléchargements
+
 __Licence :__ WTFPL.
 __Téléchargement :__ [via](lucas@matael.org:public/exosMataelOrg/gestionTempsProjet.tar.gz)
 __Désarchivage :__ le fichier téléchargé est archivé en tar.gz : commande de désarchivage : 
