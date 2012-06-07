@@ -1,5 +1,10 @@
 # Une table d'addition en hexadécimal
 
+## Notions abordées
+
+- boucles
+- fonction `printf()` & formatage de chaine
+- représentation hexa
 
 ## Enoncé
 
@@ -41,16 +46,9 @@ Sachez qu'un formatage est réalisé par cette fonction : __le code est sur 2 ca
 
 ---
 
-## Notions
-
-- boucles
-- printf et formatage de chaines
-- calcul hexa
-
-
 ## Solution 
 
-C'est __une__ solution possible : pas la seule, ni la meilleure.
+C'est __une__ solution possible : pas la seule, ni forcément la meilleure.
 
 
     /*
