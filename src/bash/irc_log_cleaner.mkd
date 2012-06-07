@@ -1,0 +1,159 @@
+# IRC Log Cleaner
+
+## Notions Abordées
+
+- Lecture de fichier
+- *pipe*
+- one-liners
+- sed
+- [expressions régulières][regexps] (ou regexs/regexps)
+
+
+## Enoncé
+
+### IRC
+
+Pour ceux qui ne connaissent pas, IRC (_Internet Relay Chat_) est un réseau de salons de discussion.
+Certaines associations (et même un parti politique) font leurs réunions en ligne via [mumble][] ou [IRC][].
+
+Lors de réunions, il est bon d'avoir un compte rendu (si possible minuté) de la discussion.
+Pour mumble, c'est simple, il suffit d'enregistrer la réunion et de prendre le minutage sur le fichier audio récupéré.
+Pour IRC, on peut utiliser plusieurs techniques pour produire un joli *log* de la disccussion, nous allons en voir une en particulier.
+
+### Votre mission
+
+(que vous acceptez, bien sûr).
+
+On va partir d'un fichier comme ça :
+
+    2012-06-07 10:49 <matael> plop
+    2012-06-07 10:49 <teuse> plop
+    2012-06-07 10:50 <matael> And this is all
+    2012-06-07 10:50 <matael> just need... nothin \o/
+    2012-06-07 10:50 <matael> !quotes random
+    2012-06-07 10:50 <teuse> Thomas dit un jour : "La barbe, ça fait pas tout."
+
+pour arriver à ça :
+
+    matael (10:49)
+        plop
+    teuse (10:49)
+        plop
+    matael (10:50)
+        And this is all
+    matael (10:50)
+        just need... nothin \o/
+    matael (10:50)
+        !quotes random
+    teuse (10:50)
+        Thomas dit un jour : "La barbe, ça fait pas tout."
+
+Un fichier de log (judicieusement nommé `log.txt`) est disponible [ici][fichier_log], nous travaillerons dessus.
+
+### Les contraintes
+
+Bah oui, juste faire l'exo est __beaucoup__ trop simple.
+
+Les contraintes vont rajouter un peu de piment à tout ça :
+
+- pas de fichier intermédiaire
+- pas de variable explicite
+- utiliser `sed` (les variables de rappel de sed : `\1`, `\2`, `\3`, etc... sont autorisées)
+- une seule ligne (oui, oui, c'est faisable)
+
+### Astuces
+
+Vous aurez besoin d'expressions régulières.
+Le [manuel de `sed`][man_sed] est particulièrement imbuvable, aussi, voilà deux liens qui pourraient vous aider :
+
+- [Expressions Régulières et Sed][sed_et_regexps]
+- [Introduction à `sed`][sed_comment_ca_marche]
+
+N'ayez crainte, le passage par les `regexps` et `sed` fait toujours un peu mal, mais maitriser cet outil est vraiment un avantage quand on travaille sur des fichiers textes (la plupart en fait).
+On galère toujours un peu au début, mais après, on va vraiment vite (j'ai mis moins d'une minute à construire la regex pour traiter ça).
+
+La meilleure astuce pour construire ses premières regexps est de recopier une "ligne" type et de remplacer les éléments par les méta-caractères et quantificateurs appropriés un par un (pas tout d'un coup).
+Essayez avec :
+    
+    2012-06-07 10:50 <teuse> Thomas dit un jour : "La barbe, ça fait pas tout."
+
+Solution juste après ;)
+
+## Solution
+
+### Construire les regexps
+
+Reprenons la ligne d'au-dessus et travaillons là
+
+    2012-06-07 10:50 <teuse> Thomas dit un jour : "La barbe, ça fait pas tout."
+    ----------
+      ce groupe ne contient pas d'espace est séparé du suivant par une espace :
+    [^\s]*\s10:50 <teuse> Thomas dit un jour : "La barbe, ça fait pas tout."
+            -----
+             idem
+    [^\s]*\s[^\s]*\s<teuse> Thomas dit un jour : "La barbe, ça fait pas tout."
+                     -----
+                      celui ci est délimité par < et > et ne contient pas de > d'où :
+    [^\s]*\s[^\s]*\s<[^>]*>\sThomas dit un jour : "La barbe, ça fait pas tout."
+                             --------------------------------------------------
+                             celui ci va de la fin du groupe précédent à la fin de la ligne:
+    [^\s]*\s[^\s]*\s<[^>]*>\s.*$
+
+Maintenant que nous avons ça, ajoutons des parenthèses autour des groupes à *retenir* :
+    
+    2012-06-07 10:50 <teuse> Thomas dit un jour : "La barbe, ça fait pas tout."
+               -----  -----  --------------------------------------------------
+                Gr1    Gr2                         Gr3
+
+On retient les groupes soulignés (les espaces sont là pour la lisibilité, dans les regexps, l'espace est représenté par `\s`):
+
+
+    [^\s]*\s \(  [^\s]*  \)   \s<  \(   [^>]*   \)  >\s  \(   .*    \) $
+                 ------                 -----                 --
+               Gr1 ou \1 pour sed      Gr2 ou \2          Gr3 ou \3
+
+Surprimons les espaces  et retrouvons notre regexp prète à être utilisée :
+    
+    [^\s]*\s\([^\s]*\)\s<\([^>]*\)>\s\(.*\)$
+
+
+__Note : il y a une faille dans cette regexp si le pseudo (entre <> contient un >)__
+
+### Utiliser `sed`
+
+L'option `-e` de `sed` permet de spécifier l'expression à utiliser pour le traitement sur la ligne de commande.
+
+Ici, le traitement `sed` sera une substitution, donc de la forme :
+
+    s/<regexp>/<substitution>/<flags>
+
+On ne s'occupe pas des flags (pas besoin ici), quant à la substitution, il s'agit de remettre les groupes de la regexp dans le bon ordre :
+
+    \2 (\1)\n\t\3
+
+Soit le groupe 2 (le pseudo) suivi de la date (groupe 1) entre parenthèses, puis un saut de ligne et une tabulation et enfin le message (groupe 3).
+
+La commande `sed` sera donc : 
+
+    sed -e 's/[^\s]*\s\([^\s]*\)\s<\([^>]*\)>\s\(.*\)$/\2 (\1)\n\t\3/'
+
+### Le pipe
+
+Désolé, j'ai les pipes, on va donc en utiliser un.
+
+Ici, nous voulons lire le fichier (avec `cat` par exemple) puis traiter la sortie avant de l'afficher.
+Séparons donc la `cat` et `sed` par un pipe qui renverra la sortie du premier dans l'entrée du deuxième :
+
+    cat log.txt | sed -e 's/[^\s]*\s\([^\s]*\)\s<\([^>]*\)>\s\(.*\)$/\2 (\1)\n\t\3/'
+
+Et le tour est joué !
+
+C'était pas si dur !
+
+[mumble]: http://mumble.sourceforge.net/
+[IRC]: http://fr.wikipedia.org/wiki/Internet_Relay_Chat
+[fichier_log]: http://matael.org/~matael/exos/log.txt
+[man_sed]: http://manpagesfr.free.fr/man/man1/sed.1.html
+[sed_et_regexps]: http://www.lmd.ens.fr/Ressources-Info/Unix-Doc/html/cours-unix-12.html
+[sed_comment_ca_marche]: http://www.commentcamarche.net/faq/9559-sed-introduction-a-sed-part-ii
+[regexps]: http://fr.wikipedia.org/wiki/Expression_rationnelle 
