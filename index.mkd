@@ -26,3 +26,14 @@ Oubliez celles-ci :
 
 - la réponse D
 - [un anti-dépresseur](http://nyan.cat) (attention, demande un temps d'adaptation)
+
+## Mentions Légales
+
+> Les codes fournis avec une license sont distribués sous les conditions de cette license.
+> 
+> Les codes fournis sans license sont distribué sous [GNU/GPLv3](http://www.gnu.org/licenses/gpl.html) ou supérieure
+> 
+> Les textes sont sous license [Creative Commons Paternité - Partage à l'Identique 3.0 Non Transposé](http://creativecommons.org/licenses/by-sa/3.0/) sauf mention contraire.
+> 
+> Copying is not theft !
+

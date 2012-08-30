@@ -1,20 +1,28 @@
 # Le fonctionnement de la page d'accueil
 
-Lors de la création de ce site, j'avais mis une liste toute moche pour les exos présents.
+## Notions abordées
 
-J'ai depuis essayé de faire un truc joli pour que ça donne envie.
+- fichiers
+- `echo`, `grep`, `cut` & `head`
+- boucles
+
+## Enoncé
+
+### Présentation
+
+Lors de la création de ce site, nous avions mis une liste toute moche pour les exos présents.
+
+Nous avons depuis essayé de faire un truc joli pour que ça donne envie.
 
 Vous remarquerez que les listes d'exos comportent le nom du fichier assorti de sa première ligne, si celle ci est un titre markdown (commence par un `#`).
 
 Aller lire la première ligne à chaque fois que l'on appelle la page d'accueil, c'est un peu lourd et pas frnchement optimisé.
-Cherchons un moyen de réduire les accès disques...
+Cherchons donc un moyen de réduire les accès disques...
 
-## Exo 1 : Trouvez un moyen de réduire les accès disque au chargement de la page
+__Question 1 : Comment pourrait on réduire les accès disque au chargement de la page ?__
 
 Si vous ne trouvez pas, c'est pas grave, mais cherchez tout de même.
 
-
----
 > __Solution__
 > 
 > Plusieurs moyens existent :
@@ -23,7 +31,7 @@ Si vous ne trouvez pas, c'est pas grave, mais cherchez tout de même.
 > - un fichier sérialisé (json, yaml) contenant les bonnes infos
 > - une base de données NoSQL clés-valeurs (redis par exemple)
 > 
-> Oublions d'emblée la première : on ne fait que déplacer le problème et puis, une DB SQL, c'est un peu lourd, et pas toujours nécessaire.
+> Oublions d'emblée la première : une DB SQL, c'est un peu lourd, et pas toujours nécessaire.
 > 
 > Le fichier sérialisé a du bon, mais je le trouvais un peu trop facile, nous allons donc nous pencher sur Redis.
 
@@ -70,7 +78,7 @@ Pour la structure de la boucle, regardez [ce Wikibook](http://fr.wikibooks.org/w
 __Note :__ Si par hasard on rajoutait des dossiers dans `src/`, le script devrait s'adapter tout seul. 
 
 
-### Solution
+## Solution
 
 On cherche à parcourir une arborescence du type:
 
@@ -94,7 +102,7 @@ Voilà le premier squelette :
     done
 
 
-Ensuite, il nous faut déduire le nom uniue du fichier courant (`$file_uniq_name`) et l'afficher (en le précédant d'un petit message) :
+Ensuite, il nous faut déduire le nom unique du fichier courant (`$file_uniq_name`) et l'afficher (en le précédant d'un petit message) :
 
     #!/bin/bash
 
@@ -125,7 +133,7 @@ Reste à trouver la premiere ligne du fichier et l'ajouter à la base si elle d�
         done
     done
 
-Expliquons un peu cette ligne :
+Expliquons un peu ces lignes :
 
     line=`head -n 1 src/$folder/$file | grep ^# | cut -d '#' -f 2`
     echo "redis-cli SET $file_uniq_name '$line'"
@@ -136,7 +144,7 @@ Expliquons un peu cette ligne :
     3. `cut -d '#' -f 2` coupe la ligne à chaque `#` et ne garde que le second champ
 2. On ajoute la ligne et la clé à la DB
 
-## Conclusion
+### Conclusion
 
 Il s'agit ici d'un système réel et utilisé pour ce site même.
 
@@ -145,5 +153,5 @@ En réalité, ce script est automatiquement appellé à chaque mise à jour et u
 Tout le processus est décrit dans cette série d'articles :
 
 1. [Plantons le décor](http://blog.matael.org/2012/04/09/git-php-et-redis-13) : présentation du système présent et de l'amélioration proposée
-2. [Redis et git](http://blog.matael.org/2012/04/09/git-php-et-redis-23) : présentation de [redis][] et de son installation, écriture du _hook_ pour git
+2. [Redis et git](http://blog.matael.org/2012/04/09/git-php-et-redis-23) : présentation de redis et de son installation, écriture du _hook_ pour git
 3. [Redis et PHP](http://blog.matael.org/2012/04/09/git-php-et-redis-33) : compilation et installation du module apache pour redis et écriture du lien PHP

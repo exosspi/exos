@@ -1,0 +1,67 @@
+# Afficher une liste des domaines gérés dans Apache
+
+## Notions abordées
+
+- commandes simples
+- _pipe_
+- bloc
+- for
+
+# Enoncé
+
+J'ai un certain nombre de sites sur mon serveur, chacun est servi par un vHost Apache 2.
+
+La configuration des vhosts se fait dans le dossier `/etc/apache2/sites-available`, un fichier par vhost.
+
+Le domaine servi par un vhost est noté sur une ligne de la forme :
+
+    ServerName mon.super.domaine.com
+
+Notez que :
+
+- Les commentaires sont fait avec des `#` et qu'ils peuvent contenir `ServerName`
+- Il peut y avoir des espaces en début de ligne
+
+L'objectif est de parcourir tous les fichiers du dossiers en n'affichant que la partie correspondant à `mon.super.domaine.com` sauf si la ligne est en commentaire.
+
+Bonne chance !
+
+# Solution
+
+    for i in `ls /etc/apache2/sites-available/`; do
+        grep ServerName $i | grep -v "^\s*#" | sed -e 's/\s*ServerName\s\(.*\)$/\1/'
+    done
+
+Je m'explique :
+
+    for i in `ls /etc/apache2/sites-available/`; do
+
+pourrait se lire :
+
+> pour chaque i dans la liste des fichiers de /etc/apache2/sites-available/; faire
+
+
+    grep ServerName $i |
+    grep -v "^\s*#" |
+    sed -e 's/\s*ServerName\s\(.*\)$/\1/'
+
+> rechercher ServerName,
+> 
+> ne garder la ligne que si elle ne commence pas par `#` précédé ou non par des espaces (`^\s*#`)
+> 
+> remplacer `<des espaces ou pas>ServerName <un truc>` par `<un truc>`
+
+    done
+
+pour marquer la fin du `for`.
+
+Si on veut tout mettre sur une ligne, ça donnerait :
+
+    for i in `ls`; do grep ServerName $i | grep -v "^\s*#" | sed -e 's/\s*ServerName\s\(.*\)$/\1/'; done;
+
+Notez que j'ai fait ma config comme un goret et que y'a parfois des doublons (au sein d'un même fichier hein !), on peut les éliminer comme ça :
+
+    {for i in `ls`; do grep ServerName $i | grep -v "^\s*#" | sed -e 's/\s*ServerName\s\(.*\)$/\1/'; done; }|uniq
+
+On entoure la commande précédente avec des accolades `{}` et on *pipe* le tout vers `uniq` qui se charge de virer les doublons.
+

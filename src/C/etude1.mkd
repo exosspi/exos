@@ -1,24 +1,6 @@
 # Un créateur de structures
 
-Bien le bonjour !
-voici un premier sujet d'étude pour ceux qui veulent aller un peu plus loin que les cours de l'université.
-
-
-
-
-## Le principe :
-Ce programme n'est pas là pour vous servir directement (est-il vraiment utile ?), mais pour montrer à ceux qui le souhaitent à quoi ressemble un programme plus long et réaliste que ceux qu'on fait en TP. (tout simplement parce que ce qu'on fait en TP, c'est le BABA de la prog'. Si vous comprenez pas ce que vous faites en TP, vous allez en chier si vous faites info)
-
-Mieux encore, ce programme aborde quelques notions, parfois encore non vues, qui sont toutes mises en relations pour finalement créer un programme utilitaire à l'intérêt perceptible.
-
-Bien sûr, je ne me contente pas d'aligner les commandes, et vous allez vite vous en rendre compte : une bonne partie, si ce n'est pas la majeure, est composée de commentaires expliquant les notions épineuses en détail. Pour de nombreux sujets cependant, je vous renverrais plus ou moins explicitement vers la doc.
-
-Notez bien que certaines notions ne sont probablement pas au programme de la L1 SPI.  (je pense surtout au fichier) Elles n'ont cependant rien de complexe, et, si vous lisez bien et tentez de comprendre, vous ne devriez pas être perdu.
-
-
-
-
-## Notions abordées :
+## Notions abordées
 
 * Pointeurs;
 * allocation dynamique;
@@ -27,42 +9,44 @@ Notez bien que certaines notions ne sont probablement pas au programme de la L1 
 * fonction;
 * algorithmique de base.
 
+## Enoncé
 
+Bien le bonjour !
+voici un premier sujet d'étude pour ceux qui veulent aller un peu plus loin que les cours de l'université.
 
+### Le principe
 
-## Comment étudier ce programme :
+Ce programme n'est pas là pour vous servir directement (est-il vraiment utile ?), mais pour montrer à ceux qui le souhaitent à quoi ressemble un programme plus long et réaliste que ceux qu'on fait en TP. (tout simplement parce que ce qu'on fait en TP, c'est le BABA de la prog'. Si vous comprenez pas ce que vous faites en TP, vous allez en chier si vous faites info)
+
+Mieux encore, ce programme aborde quelques notions, parfois encore non vues, qui sont toutes mises en relations pour finalement créer un programme utilitaire à l'intérêt perceptible.
+
+Bien sûr, je ne me contente pas d'aligner les commandes, et vous allez vite vous en rendre compte : une bonne partie, si ce n'est pas la majeure, est composée de commentaires expliquant les notions épineuses en détail. Pour de nombreux sujets cependant, je vous renverrais plus ou moins explicitement vers la doc.
+
+Notez bien que certaines notions ne sont probablement pas au programme de la L1 SPI.  (je pense surtout au fichier) Elles n'ont cependant rien de complexe, et, si vous lisez bien et tentez de comprendre, vous ne devriez pas être perdu.
+
+### Comment étudier ce programme :
+
 Déjà, commencez par l'essayer. Ensuite, lisez juste la fonction main, elle est assez explicite.
 
 * lisez le header (main.h) en entier (il fait moins de 100 lignes, dont beaucoup de commentaires). Il contient énormément d'informations qu'il sera parfois nécessaire de comprendre par la suite.
-
 * survolez le programme pour voir un peu de quoi il est question.
-
 * Ensuite, vous avez le choix : 
  - soit vous aimez la prog', et vous étudiez le programme dans son ordre d'exécution. (comme on fait pour le debugage)
  - soit vous ne voulez pas faire comme ça, (et c'est vrai que c'est chiant), et vous choisissez une fonction qui vous inspire confiance, et commencez par comprendre celle-là. Une fois comprise, il sera plus simple d'aborder les autres.
 
 C'est en étudiant chaque fonction une par une que vous finirez par comprendre l'ensemble du programme.
 
-
-
-
 ## L'objectif :
-Bien sûr, il ne s'agit pas de savoir comment recracher un programme semblable sans réfléchir juste en regardant le clavier. Ça n'a aucun intérêt. L'objectif réel est de montrer à qui veux bosser la prog' qu'il est possible, avec un niveau moyen, de faire des choses intéressantes, voire utiles, tout en apportant quelques bases de notions qui intéresseront certainement ceux qui veulent aller plus loin que le triage par bulle d'un tableau de N cases  :P 
 
+Bien sûr, il ne s'agit pas de savoir comment recracher un programme semblable sans réfléchir juste en regardant le clavier. Ça n'a aucun intérêt. L'objectif réel est de montrer à qui veut bosser la prog' qu'il est possible, avec un niveau moyen, de faire des choses intéressantes, voire utiles, tout en apportant quelques bases de notions qui intéresseront certainement ceux qui veulent aller plus loin que le triage par bulle d'un tableau de N cases  :P 
 
+## Téléchargement
 
-
-## Téléchargement :
 Vous trouverez le [tar.gz](http://matael.org/~lucas/exosMataelOrg/CreationClasseC.tar.gz) contenant les sources. (deux fichiers, en fait)
 Rien d'autre, car c'est pas spécialement utile.
 
 
 La licence est WTFPL. En gros, vous faites ce que vous voulez, vous pouvez même le vendre en disant que c'est un habitant des îles caïmans qui l'a codé avec une flûte en bois de baobab et un ordinateur sous BrainFuckOS.
-
-
-
-
-
 
 Bon courage à ceux qui se lanceront dans cette petite aventure !
 (et n'oubliez pas que je suis derrière mon PC, ou à la fac. Dans les deux cas, je suis joignable, sur ce forum dans ce sujet même, ou sur la fac, en vrai, avec  une barbe noire, des sandales et un short coloré(enfin, j'espère))
