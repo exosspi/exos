@@ -1,0 +1,112 @@
+# Répartition des nombres premiers
+
+Histoire de réviser un Octave, voici un exo simple passant en revue la majorité des concepts clés.
+
+## Énoncé
+
+On cherche à générer un graphe comme [celui-ci](http://matael.org/~matael/exos/graph_primes.png).
+
+Voyons ça plus en détail : on commence par définir une borne haute, borne jusqu'a laquelle on cherchera des nombres
+premiers. Dans l'exemple, la borne (que nous appellerons **N**) est fixée à 500.
+Ensuite, on teste chacun des nombres entre 0 et N pour savoir s'il est premier, s'il l'est, on l'ajoute à une liste.
+A la fin du parcours, cette liste contiendra tous les nombres premiers entre 0 et N, dans **l'ordre croissant**.
+
+Nous allons ensuite afficher le titre (comprenant le nombre de nombres premiers trouvés) puis un premier graphe
+présentant un point par nombre premier d'abscisse le nombre en question et d'ordonnée 1 (pour *décoller* la suite de
+point de l'axe des abscisses).
+
+Enfin, on va générer un second graphe en barres représentant le nombre de nombres premiers par tranche de 50.
+
+Mon script fait 60 lignes avec les commentaires et les blancs (disons, 45 lignes utiles), à aucun moment vous n'aurez
+besoin **d'écrire un tableau à la main**. Si vous pensez que c'est la seule manière, effacez tout et recommencez.
+
+## Notions
+
+* graphes
+* subplot
+* tableaux et concaténation de tableaux
+* boucles
+* tests
+
+## Indications
+
+### Comment savoir si un nombre est premier
+
+Le plus simple (cf cours de math de terminal) est de regarder si le nombre à tester (appellons le i) est divisible par au moins un autre compris entre 2 et racine de i.
+
+Pour être sur de bien comprendre la racine, et par ce qu'on ne travaille qu'avec des entiers ici, arrondissez au dessus
+lors du calcul de racine, via :
+
+    racine = ceil(sqrt(i));
+
+Pour le reste, la doc d'Octave devrait suffir.
+
+## Solution
+
+Voilà mon script, la seule différence, est qu'il génére une image PNG (voire dernière ligne).
+
+
+    %
+    % File : graph_primes
+    % Author : mathieu (matael) gaborit
+    % 		<mathieu@matael.org>
+    % License : WTFPL
+    %
+    % L'objectif est de créer un graphe montrant la répartition des nombres premiers de 0 à N
+    
+    % On vire les différentes fenetre, et on supprime est variables.
+    clear all;
+    close all;
+    
+    % Nombre max
+    N = 500;
+    
+    % création de la liste
+    primes = [];
+    
+    for i=0:N
+    	premier = 1;
+    	racine = ceil(sqrt(i));
+    	for j=2:racine
+    		if j~=i
+    			if mod(i,j)==0
+    				premier = 0;
+    				break;
+    			end
+    		end
+    	end
+    	if premier==1
+    		primes = [primes i];
+    	end
+    end
+    
+    subplot(2,1,1);
+    plot(primes, (1*ones(1, length(primes))), '+');
+    grid on;
+    title([num2str(length(primes)), " primes found."]);
+    subplot(2,1,2);
+    
+    % création de la liste pour l'histogramme
+    histo = [];
+    lim_basse = 0;
+    while lim_basse<N
+    	count = 0;
+    	for i=primes
+    		if i>lim_basse
+    			if i<lim_basse+50
+    				count += 1;
+    			else
+    				break
+    			end
+    		end
+    	end
+    	histo = [histo ; lim_basse+25 count];
+    	lim_basse += 50;
+    end
+    
+    bar(histo(:,1), histo(:,2));
+    grid on;
+    
+    print("graph_primes.png", "-dPNG");
+
+Vous pourrez le télécharger [ici](http://matael.org/~matael/exos/graph_primes.m).
